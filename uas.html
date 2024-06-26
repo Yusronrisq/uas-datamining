@@ -1,0 +1,1043 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pemahaman Data (data understanding) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'uas';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pemahaman Data (data understanding)</a></li>
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fuas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/uas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pemahaman Data (data understanding)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pemahaman Data (data understanding)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemahaman-data">Pemahaman data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">pengumpulan data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tentang-data">tentang data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pemrosesan-awal-data-preprocessing">Pemrosesan awal data (Preprocessing )</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemrosesan-data">pemrosesan data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembersihan-data">Pembersihan data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-mentah">data mentah</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model">model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membagi-data-training-dan-testing">membagi data training dan testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian-menggunakan-model">pengujian menggunakan model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#staccking-classifier">staccking classifier</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pemahaman-data-data-understanding">
+<h1>Pemahaman Data (data understanding)<a class="headerlink" href="#pemahaman-data-data-understanding" title="Link to this heading">#</a></h1>
+<section id="pemahaman-data">
+<h2>Pemahaman data<a class="headerlink" href="#pemahaman-data" title="Link to this heading">#</a></h2>
+<p>Proses tahap awal dalam proses analisis data yang bertujuan untuk memperoleh wawasan dan pemahaman mendalam mengenai data yang tersedia, data yang saya gunakan di sini yaitu CDC Diabetes Health Indicators Kumpulan Data Indikator Kesehatan Diabetes yang berisikan statistik layanan kesehatan dan informasi survei gaya hidup tentang orang-orang secara umum beserta diagnosis diabetes mereka. 35 fitur tersebut terdiri dari beberapa demografi, hasil tes lab, dan jawaban pertanyaan survei untuk setiap pasien. Variabel target klasifikasi adalah apakah pasien menderita diabetes, pra-diabetes, atau sehat.</p>
+</section>
+<section id="tujuan">
+<h2>tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<p>Data ini bertujuan untuk lebih memahami hubungan antara gaya hidup dan diabetes</p>
+</section>
+<section id="pengumpulan-data">
+<h2>pengumpulan data<a class="headerlink" href="#pengumpulan-data" title="Link to this heading">#</a></h2>
+<p>data ini diambil dari UCI dataset,cara mengambilnya yaitu bisa dilakukan dengan kode di bawah</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#hal pertama yang harus dilakukan yaitu menginstal library terlebih dahulu</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ucimlrepo
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ucimlrepo in c:\users\acer\appdata\local\programs\python\python312\lib\site-packages (0.0.7)
+Requirement already satisfied: pandas&gt;=1.0.0 in c:\users\acer\appdata\local\programs\python\python312\lib\site-packages (from ucimlrepo) (2.2.2)
+Requirement already satisfied: certifi&gt;=2020.12.5 in c:\users\acer\appdata\local\programs\python\python312\lib\site-packages (from ucimlrepo) (2024.2.2)
+Requirement already satisfied: numpy&gt;=1.26.0 in c:\users\acer\appdata\local\programs\python\python312\lib\site-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (1.26.4)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\acer\appdata\local\programs\python\python312\lib\site-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\acer\appdata\local\programs\python\python312\lib\site-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2024.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\acer\appdata\local\programs\python\python312\lib\site-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2024.1)
+Requirement already satisfied: six&gt;=1.5 in c:\users\acer\appdata\local\programs\python\python312\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.0.0-&gt;ucimlrepo) (1.16.0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 24.0 -&gt; 24.1.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">StackingClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+<span class="kn">from</span> <span class="nn">ucimlrepo</span> <span class="kn">import</span> <span class="n">fetch_ucirepo</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>kode di atas adalah library yang dibutuhkan selamam mengeksekusi data, kemudian setelahnya ambil data dari dataset dan dijadikan csv(optional)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cdc_diabetes_health_indicators</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">891</span><span class="p">)</span>
+
+<span class="c1"># Data (as pandas dataframes) </span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">cdc_diabetes_health_indicators</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">original</span>
+
+<span class="c1"># Menyimpan hasil komputasi ke dalam csv</span>
+<span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;cdc_diabetes_health_indicators.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ID  Diabetes_binary  HighBP  HighChol  CholCheck  BMI  Smoker  Stroke  \
+0   0                0       1         1          1   40       1       0   
+1   1                0       0         0          0   25       1       0   
+2   2                0       1         1          1   28       0       0   
+3   3                0       1         0          1   27       0       0   
+4   4                0       1         1          1   24       0       0   
+
+   HeartDiseaseorAttack  PhysActivity  ...  AnyHealthcare  NoDocbcCost  \
+0                     0             0  ...              1            0   
+1                     0             1  ...              0            1   
+2                     0             0  ...              1            1   
+3                     0             1  ...              1            0   
+4                     0             1  ...              1            0   
+
+   GenHlth  MentHlth  PhysHlth  DiffWalk  Sex  Age  Education  Income  
+0        5        18        15         1    0    9          4       3  
+1        3         0         0         0    0    7          6       1  
+2        5        30        30         1    0    9          4       8  
+3        2         0         0         0    0   11          3       6  
+4        2         3         0         0    0   11          5       4  
+
+[5 rows x 23 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>di atas adalah isi dari dataset</p>
+</section>
+<section id="tentang-data">
+<h2>tentang data<a class="headerlink" href="#tentang-data" title="Link to this heading">#</a></h2>
+<p>pada data terdapat kolom sebegaai berikut:</p>
+<ul class="simple">
+<li><p><strong>Diabetes_binary</strong>: Status diabetes (0 = tidak ada diabetes, 1 = pradiabetes atau diabetes)</p></li>
+<li><p><strong>HighBP</strong>: Tekanan darah tinggi (0 = tidak ada tekanan darah tinggi, 1 = tekanan darah tinggi)</p></li>
+<li><p><strong>HighChol</strong>: Kolesterol tinggi (0 = tidak ada kolesterol tinggi, 1 = kolesterol tinggi)</p></li>
+<li><p><strong>CholCheck</strong>: Pemeriksaan kolesterol dalam 5 tahun terakhir (0 = tidak, 1 = ya)</p></li>
+<li><p><strong>BMI</strong>: Indeks Massa Tubuh (IMT)</p></li>
+<li><p><strong>Smoker</strong>: Pernah merokok setidaknya 100 batang rokok dalam seumur hidup (0 = tidak, 1 = ya)</p></li>
+<li><p><strong>Stroke</strong>: Pernah diberitahu memiliki stroke (0 = tidak, 1 = ya)</p></li>
+<li><p><strong>HeartDiseaseorAttack</strong>: Penyakit jantung koroner (CHD) atau serangan jantung (MI) (0 = tidak, 1 = ya)</p></li>
+<li><p><strong>PhysActivity</strong>: Aktivitas fisik dalam 30 hari terakhir - tidak termasuk pekerjaan (0 = tidak, 1 = ya)</p></li>
+<li><p><strong>Fruits</strong>: Mengonsumsi buah 1 kali atau lebih per hari (0 = tidak, 1 = ya)</p></li>
+<li><p><strong>Veggies</strong>: Mengonsumsi sayuran 1 kali atau lebih per hari (0 = tidak, 1 = ya)</p></li>
+<li><p><strong>HvyAlcoholConsump</strong>: Konsumsi alkohol berat (pria dewasa yang minum lebih dari 14 minuman per minggu dan wanita dewasa yang minum lebih dari 7 minuman per minggu) (0 = tidak, 1 = ya)</p></li>
+<li><p><strong>AnyHealthcare</strong>: Memiliki jenis perlindungan kesehatan apa pun, termasuk asuransi kesehatan, rencana prabayar seperti HMO, dll. (0 = tidak, 1 = ya)</p></li>
+<li><p><strong>NoDocbcCost</strong>: Pernah ada waktu dalam 12 bulan terakhir ketika Anda perlu menemui dokter tetapi tidak bisa karena biaya? (0 = tidak, 1 = ya)</p></li>
+<li><p><strong>GenHlth</strong>: Bagaimana Anda mengatakan kesehatan umum Anda: skala 1-5 (1 = sangat baik, 2 = baik, 3 = cukup, 4 = kurang baik, 5 = buruk)</p></li>
+<li><p><strong>MentHlth</strong>: Sekarang berpikir tentang kesehatan mental Anda, yang meliputi stres, depresi, dan masalah dengan emosi, berapa hari selama 30 hari terakhir kesehatan mental Anda tidak baik? (skala 1-30 hari)</p></li>
+<li><p><strong>PhysHlth</strong>: Sekarang berpikir tentang kesehatan fisik Anda, yang meliputi penyakit fisik dan cedera, berapa hari selama 30 hari terakhir kesehatan fisik Anda tidak baik? (skala 1-30 hari)</p></li>
+<li><p><strong>DiffWalk</strong>: Apakah Anda memiliki kesulitan serius untuk berjalan atau naik tangga? (0 = tidak, 1 = ya)</p></li>
+<li><p><strong>Sex</strong>: Jenis kelamin (0 = perempuan, 1 = laki-laki)</p></li>
+<li><p><strong>Age</strong>: Usia</p></li>
+<li><p><strong>Education</strong>: Tingkat pendidikan (EDUCA lihat buku kode) skala 1-6</p>
+<ul>
+<li><p>1 = Tidak pernah sekolah atau hanya taman kanak-kanak</p></li>
+<li><p>2 = Kelas 1 hingga 8 (SD)</p></li>
+<li><p>3 = Kelas 9 hingga 11 (Beberapa sekolah menengah)</p></li>
+<li><p>4 = Kelas 12 atau GED (Lulusan sekolah menengah)</p></li>
+<li><p>5 = Perguruan tinggi 1 tahun hingga 3 tahun (Beberapa perguruan tinggi atau sekolah teknis)</p></li>
+<li><p>6 = Perguruan tinggi 4 tahun atau lebih (Lulusan perguruan tinggi)</p></li>
+</ul>
+</li>
+<li><p><strong>Income</strong>: Skala pendapatan (INCOME2 lihat buku kode) skala 1-8</p>
+<ul>
+<li><p>1 = kurang dari Rp150.000.000</p></li>
+<li><p>5 = kurang dari Rp525.000.000</p></li>
+<li><p>8 = Rp1.125.000.000 atau lebih</p></li>
+</ul>
+</li>
+</ul>
+<p>mencari tahu terdapat berapa jumlah data pada masing masing penderita diabetes pada data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Diabetes_binary&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Diabetes_binary
+0    218334
+1     35346
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>pada kode di atas dapat kita ketahui bahwa terdapat 35346 penderita diabetes dan 218334 tidak, dan dari kode tersebut kita tahu bahwa sanya data berjumlah 253.680</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pemrosesan-awal-data-preprocessing">
+<h1>Pemrosesan awal data (Preprocessing )<a class="headerlink" href="#pemrosesan-awal-data-preprocessing" title="Link to this heading">#</a></h1>
+<section id="pemrosesan-data">
+<h2>pemrosesan data<a class="headerlink" href="#pemrosesan-data" title="Link to this heading">#</a></h2>
+<p>metode yang digunakan untuk mengubah, membersihkan, dan mempersiapkan data mentah menjadi format yang dapat digunakan untuk analisis lebih lanjut atau pemodelan.</p>
+</section>
+<section id="pembersihan-data">
+<h2>Pembersihan data<a class="headerlink" href="#pembersihan-data" title="Link to this heading">#</a></h2>
+<p>terdapat 3 data yang bisa dihapus yaitu ketika terdapat:</p>
+<ul class="simple">
+<li><p>missing value</p></li>
+<li><p>data duplikat</p></li>
+<li><p>outlier</p></li>
+</ul>
+<p>memeriksa apakah terdapat missing value pada data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Melakukan pengecekan apakah terdapat missing value dalam setiap kolom</span>
+<span class="n">missing_val</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Menampilkan berapa jumlah adanya missing value untuk setiap kolomnya</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah nilai yang hilang untuk setiap kolom:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing_val</span><span class="p">)</span>
+
+<span class="c1"># Melakukan pengecekan apakah ada nilai null atau missing value</span>
+<span class="k">if</span> <span class="n">missing_val</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tidak ada missing value.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Terdapat missing value dalam dataset.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah nilai yang hilang untuk setiap kolom:
+Unnamed: 0              0
+ID                      0
+Diabetes_binary         0
+HighBP                  0
+HighChol                0
+CholCheck               0
+BMI                     0
+Smoker                  0
+Stroke                  0
+HeartDiseaseorAttack    0
+PhysActivity            0
+Fruits                  0
+Veggies                 0
+HvyAlcoholConsump       0
+AnyHealthcare           0
+NoDocbcCost             0
+GenHlth                 0
+MentHlth                0
+PhysHlth                0
+DiffWalk                0
+Sex                     0
+Age                     0
+Education               0
+Income                  0
+dtype: int64
+Tidak ada missing value.
+</pre></div>
+</div>
+</div>
+</div>
+<p>dapat dilihat dari output diatas bahwa tidak ada missing value, karena tidak terdapat missing value pada data maka tidak perlu dilakukan penghapusan data</p>
+<p>setelahnya yaitu melakukan apakah terdapat duplikat pada data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mencari data duplikat</span>
+<span class="n">duplicate_rows</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()]</span>
+
+<span class="c1"># Menampilkan data duplikat jika ada</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">duplicate_rows</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data duplikat yang ditemukan:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">duplicate_rows</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tidak ada data duplikat dalam dataset.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tidak ada data duplikat dalam dataset.
+</pre></div>
+</div>
+</div>
+</div>
+<p>tidak ada data yang duplikat pada data ini jadi tidak perlu dilakukan penghapusan data</p>
+<p>setelahnya mencari outlier pada data</p>
+<p>Untuk mendapatkan model yang paling akurat dan tidak membebani model dengan informasi yang tidak penting, kami hanya ingin mempertahankan fitur yang paling relevan. Kami akan memfilter fitur dan mempertahankan fitur yang memiliki korelasi lebih besar atau sama dari 0,2 dengan target. Target dalam kasus kami adalah kolom “Diabetes_binary”. Untuk alasan yang sama, untuk fitur yang paling relevan, kami akan memeriksa keberadaan outlier dan menghapusnya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">corr</span><span class="p">()[</span><span class="s1">&#39;Diabetes_binary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+<span class="n">features</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Income                 -0.163919
+Education              -0.124456
+PhysActivity           -0.118133
+HvyAlcoholConsump      -0.057056
+Veggies                -0.056584
+Fruits                 -0.040779
+Unnamed: 0              0.004268
+ID                      0.004268
+AnyHealthcare           0.016255
+Sex                     0.031430
+NoDocbcCost             0.031433
+Smoker                  0.060789
+CholCheck               0.064761
+MentHlth                0.069315
+Stroke                  0.105816
+PhysHlth                0.171337
+HeartDiseaseorAttack    0.177282
+Age                     0.177442
+HighChol                0.200276
+BMI                     0.216843
+DiffWalk                0.218344
+HighBP                  0.263129
+GenHlth                 0.293569
+Diabetes_binary         1.000000
+Name: Diabetes_binary, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">high_corr_features</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">features</span> <span class="o">&gt;=</span> <span class="mf">0.2</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">high_corr_features</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;HighChol&#39;, &#39;BMI&#39;, &#39;DiffWalk&#39;, &#39;HighBP&#39;, &#39;GenHlth&#39;, &#39;Diabetes_binary&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">high_corr_features</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Box Plot for </span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Fungsi untuk mendeteksi outlier menggunakan IQR</span>
+<span class="k">def</span> <span class="nf">detect_outliers_iqr</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">Q1</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">Q3</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+    <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+    <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+    <span class="n">outliers</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">outliers</span>
+
+<span class="c1"># Deteksi outlier untuk setiap kolom</span>
+<span class="n">outlier_counts</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">high_corr_features</span><span class="p">:</span>
+    <span class="n">outliers</span> <span class="o">=</span> <span class="n">detect_outliers_iqr</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+    <span class="n">outlier_counts</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">outliers</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Tampilkan jumlah outlier untuk setiap kolom</span>
+<span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">outlier_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah outlier di kolom </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/66031b0cda169b588b179daa62338eea57a7311dc4a0fe4208052c60f875849d.png" src="_images/66031b0cda169b588b179daa62338eea57a7311dc4a0fe4208052c60f875849d.png" />
+<img alt="_images/2793230573eec96b56408aaf1b2cd4299e14717146609df41a989aa7b51df995.png" src="_images/2793230573eec96b56408aaf1b2cd4299e14717146609df41a989aa7b51df995.png" />
+<img alt="_images/6ed69fdf96d29d7da3d0b4b9a0a4fb7ff848a5ddb9420bf212d595a4fb7882b0.png" src="_images/6ed69fdf96d29d7da3d0b4b9a0a4fb7ff848a5ddb9420bf212d595a4fb7882b0.png" />
+<img alt="_images/294d93bcbf1bb65be9391dd3f71ebf3fcc62f4a6dc3593388288a306aa6cd024.png" src="_images/294d93bcbf1bb65be9391dd3f71ebf3fcc62f4a6dc3593388288a306aa6cd024.png" />
+<img alt="_images/1ad74d7049e175d9ceba93914365728430ce9ee9fb0c0477bdca7bf3761128e6.png" src="_images/1ad74d7049e175d9ceba93914365728430ce9ee9fb0c0477bdca7bf3761128e6.png" />
+<img alt="_images/7fe66841b005997d5cee8874738589c8e93c7a4f9f6237a489fb714759c5ccd7.png" src="_images/7fe66841b005997d5cee8874738589c8e93c7a4f9f6237a489fb714759c5ccd7.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah outlier di kolom HighChol: 0
+Jumlah outlier di kolom BMI: 9847
+Jumlah outlier di kolom DiffWalk: 42675
+Jumlah outlier di kolom HighBP: 0
+Jumlah outlier di kolom GenHlth: 12081
+Jumlah outlier di kolom Diabetes_binary: 35346
+</pre></div>
+</div>
+</div>
+</div>
+<p>dari kode di atas yang dapat dilihat ada outlier di kolom bmi dan genhlth yang bukan biner
+maka akan dilakukan eksekusi penghapusan outlier</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definisikan fungsi untuk mendeteksi dan menghapus outlier berdasarkan IQR</span>
+<span class="k">def</span> <span class="nf">fix_outliers_iqr</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column</span><span class="p">):</span>
+    <span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+    <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+    <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+    <span class="c1"># Hapus baris yang mengandung outlier</span>
+    <span class="n">df_cleaned</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">upper_bound</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">df_cleaned</span>
+
+<span class="c1"># Menghapus outlier di kolom &#39;BMI&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">fix_outliers_iqr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;BMI&#39;</span><span class="p">)</span>
+
+<span class="c1"># Menghapus outlier di kolom &#39;GenHlth&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">fix_outliers_iqr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;GenHlth&#39;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan hasil setelah penghapusan outlier</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data setelah penghapusan outlier pada kolom &#39;BMI&#39; dan &#39;GenHlth&#39;:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data setelah penghapusan outlier pada kolom &#39;BMI&#39; dan &#39;GenHlth&#39;:
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 232960 entries, 1 to 253679
+Data columns (total 24 columns):
+ #   Column                Non-Null Count   Dtype
+---  ------                --------------   -----
+ 0   Unnamed: 0            232960 non-null  int64
+ 1   ID                    232960 non-null  int64
+ 2   Diabetes_binary       232960 non-null  int64
+ 3   HighBP                232960 non-null  int64
+ 4   HighChol              232960 non-null  int64
+ 5   CholCheck             232960 non-null  int64
+ 6   BMI                   232960 non-null  int64
+ 7   Smoker                232960 non-null  int64
+ 8   Stroke                232960 non-null  int64
+ 9   HeartDiseaseorAttack  232960 non-null  int64
+ 10  PhysActivity          232960 non-null  int64
+ 11  Fruits                232960 non-null  int64
+ 12  Veggies               232960 non-null  int64
+ 13  HvyAlcoholConsump     232960 non-null  int64
+ 14  AnyHealthcare         232960 non-null  int64
+ 15  NoDocbcCost           232960 non-null  int64
+ 16  GenHlth               232960 non-null  int64
+ 17  MentHlth              232960 non-null  int64
+ 18  PhysHlth              232960 non-null  int64
+ 19  DiffWalk              232960 non-null  int64
+ 20  Sex                   232960 non-null  int64
+ 21  Age                   232960 non-null  int64
+ 22  Education             232960 non-null  int64
+ 23  Income                232960 non-null  int64
+dtypes: int64(24)
+memory usage: 44.4 MB
+None
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-mentah">
+<h1>data mentah<a class="headerlink" href="#data-mentah" title="Link to this heading">#</a></h1>
+<p>menyiapkan data mentah untuk menggunakan model nantinya</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Diabetes_binary&#39;</span><span class="p">,</span> <span class="s1">&#39;ID&#39;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Diabetes_binary&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="model">
+<h1>model<a class="headerlink" href="#model" title="Link to this heading">#</a></h1>
+<p>Proses modelling dalam analisis data adalah langkah penting di mana Anda menggunakan berbagai teknik statistik atau algoritma machine learning untuk memahami, menganalisis, dan/atau memprediksi pola dalam data. Dikarenakan dalam Case Datasets diabetes binary ini tujuannya untuk menentukan kategori dari pengelompokan terkena diabetes jadi tentunya kita menggunakan Metode Klasifikasi.</p>
+<section id="membagi-data-training-dan-testing">
+<h2>membagi data training dan testing<a class="headerlink" href="#membagi-data-training-dan-testing" title="Link to this heading">#</a></h2>
+<p>Data train (training data) dan data test (testing data) adalah dua komponen penting dalam machine learning dan pemrosesan data. Keduanya digunakan untuk melatih dan menguji model agar model tersebut dapat membuat prediksi yang akurat pada data baru. Berikut adalah penjelasan lebih lanjut tentang masing-masing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>pada kode di atas saya membagi data menjadi 70% training dan 30% testing dengan random state 42
+random state adalah sebuah angka acak yang digunakan untuk memastikan kesalahan dalam proses pelatihan tan pengujian</p>
+</section>
+<section id="pengujian-menggunakan-model">
+<h2>pengujian menggunakan model<a class="headerlink" href="#pengujian-menggunakan-model" title="Link to this heading">#</a></h2>
+<p>Pengujian menggunakan model adalah proses evaluasi performa model machine learning setelah model tersebut dilatih. Tujuannya adalah untuk menentukan seberapa baik model dapat memprediksi atau mengklasifikasikan data baru yang belum pernah dilihat sebelumnya.
+pada data ini saya mengujinya dengan menggunakan stacking classifier</p>
+</section>
+<section id="staccking-classifier">
+<h2>staccking classifier<a class="headerlink" href="#staccking-classifier" title="Link to this heading">#</a></h2>
+<p>teknik ensambel dalam machine learning yang menggabungkan prediksi dari beberapa model dasar (base models) untuk membentuk satu model meta (meta-learner). Tujuan dari stacking adalah untuk meningkatkan performa prediksi dengan memanfaatkan kekuatan dari berbagai model dasar yang berbeda model yang aku gunakan disini yaitu knn3, knn6, knn9 dan setelahnya di eksekusi dengan logistic regression</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estimators</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;knn&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">//</span> <span class="mi">3</span><span class="p">),</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+
+<span class="n">stack_clf</span> <span class="o">=</span> <span class="n">StackingClassifier</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="n">estimators</span><span class="p">,</span>
+                               <span class="n">final_estimator</span><span class="o">=</span><span class="n">LogisticRegression</span><span class="p">())</span>
+
+<span class="n">stack_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">stack_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy of stacking classifier: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">new_data</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>  <span class="c1"># Replace with your new data</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">stack_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predictions for new data: </span><span class="si">{</span><span class="n">predictions</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy of stacking classifier: 0.92
+Predictions for new data: [0]
+/shared-libs/python3.9/py/lib/python3.9/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but KNeighborsClassifier was fitted with feature names
+  warnings.warn(
+/shared-libs/python3.9/py/lib/python3.9/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but KNeighborsClassifier was fitted with feature names
+  warnings.warn(
+/shared-libs/python3.9/py/lib/python3.9/site-packages/sklearn/base.py:450: UserWarning: X does not have valid feature names, but KNeighborsClassifier was fitted with feature names
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<a style='text-decoration:none;line-height:16px;display:flex;color:#5B5B62;padding:10px;justify-content:end;' href='https://deepnote.com?utm_source=created-in-deepnote-cell&projectId=bcb6bb5a-b47b-4d36-b123-783f386966ab' target="_blank">
+<img alt='Created in deepnote.com' style='display:inline;max-height:16px;margin:0px;margin-right:7.5px;' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iODBweCIgaGVpZ2h0PSI4MHB4IiB2aWV3Qm94PSIwIDAgODAgODAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDU0LjEgKDc2NDkwKSAtIGh0dHBzOi8vc2tldGNoYXBwLmNvbSAtLT4KICAgIDx0aXRsZT5Hcm91cCAzPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9IkxhbmRpbmciIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJBcnRib2FyZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEyMzUuMDAwMDAwLCAtNzkuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJHcm91cC0zIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMjM1LjAwMDAwMCwgNzkuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8cG9seWdvbiBpZD0iUGF0aC0yMCIgZmlsbD0iIzAyNjVCNCIgcG9pbnRzPSIyLjM3NjIzNzYyIDgwIDM4LjA0NzY2NjcgODAgNTcuODIxNzgyMiA3My44MDU3NTkyIDU3LjgyMTc4MjIgMzIuNzU5MjczOSAzOS4xNDAyMjc4IDMxLjY4MzE2ODMiPjwvcG9seWdvbj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zNS4wMDc3MTgsODAgQzQyLjkwNjIwMDcsNzYuNDU0OTM1OCA0Ny41NjQ5MTY3LDcxLjU0MjI2NzEgNDguOTgzODY2LDY1LjI2MTk5MzkgQzUxLjExMjI4OTksNTUuODQxNTg0MiA0MS42NzcxNzk1LDQ5LjIxMjIyODQgMjUuNjIzOTg0Niw0OS4yMTIyMjg0IEMyNS40ODQ5Mjg5LDQ5LjEyNjg0NDggMjkuODI2MTI5Niw0My4yODM4MjQ4IDM4LjY0NzU4NjksMzEuNjgzMTY4MyBMNzIuODcxMjg3MSwzMi41NTQ0MjUgTDY1LjI4MDk3Myw2Ny42NzYzNDIxIEw1MS4xMTIyODk5LDc3LjM3NjE0NCBMMzUuMDA3NzE4LDgwIFoiIGlkPSJQYXRoLTIyIiBmaWxsPSIjMDAyODY4Ij48L3BhdGg+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMCwzNy43MzA0NDA1IEwyNy4xMTQ1MzcsMC4yNTcxMTE0MzYgQzYyLjM3MTUxMjMsLTEuOTkwNzE3MDEgODAsMTAuNTAwMzkyNyA4MCwzNy43MzA0NDA1IEM4MCw2NC45NjA0ODgyIDY0Ljc3NjUwMzgsNzkuMDUwMzQxNCAzNC4zMjk1MTEzLDgwIEM0Ny4wNTUzNDg5LDc3LjU2NzA4MDggNTMuNDE4MjY3Nyw3MC4zMTM2MTAzIDUzLjQxODI2NzcsNTguMjM5NTg4NSBDNTMuNDE4MjY3Nyw0MC4xMjg1NTU3IDM2LjMwMzk1NDQsMzcuNzMwNDQwNSAyNS4yMjc0MTcsMzcuNzMwNDQwNSBDMTcuODQzMDU4NiwzNy43MzA0NDA1IDkuNDMzOTE5NjYsMzcuNzMwNDQwNSAwLDM3LjczMDQ0MDUgWiIgaWQ9IlBhdGgtMTkiIGZpbGw9IiMzNzkzRUYiPjwvcGF0aD4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+' > </img>
+Created in <span style='font-weight:600;margin-left:4px;'>Deepnote</span></a></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pemahaman Data (data understanding)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemahaman-data">Pemahaman data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">pengumpulan data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tentang-data">tentang data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pemrosesan-awal-data-preprocessing">Pemrosesan awal data (Preprocessing )</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemrosesan-data">pemrosesan data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembersihan-data">Pembersihan data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-mentah">data mentah</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model">model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membagi-data-training-dan-testing">membagi data training dan testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian-menggunakan-model">pengujian menggunakan model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#staccking-classifier">staccking classifier</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
